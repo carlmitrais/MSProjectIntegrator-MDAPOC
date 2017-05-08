@@ -1,0 +1,97 @@
+﻿@model MSProjectIntegrator.Models.ProjectModel
+@{
+    ViewBag.Title = "Project Detail";
+    //Layout = "~/Views/Shared/Lockout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form class="form-horizontal form-main" id="Form1">
+    <div class="form-group m-b-s">
+        <div class="col-xs-3">@Html.LabelFor(model => model.Name, new { @class = "control-label" })<i> :</i></div>
+        <div class="col-xs-4">
+            @Html.TextBox("Name", Model.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group m-b-s">
+        <div class="col-xs-3"><label class="control-label">Task List</label><i> :</i></div>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover dataTable" id="tablegrid">
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Duration</th>
+                    <th>Resource Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tUser">
+                @{
+                    foreach (var item in Model.TaskList)
+                    {
+                        <tr>
+                            <td>@item.Task_Name</td>
+                            <td>@item.Start_Date</td>
+                            <td>@item.Finish_Date</td>
+                            <td>@item.Duration</td>
+                            <td>@item.User.Name</td>
+                            <td>
+                                <input type="button" value="Update" class="btn btn-warning btn-xs" onclick="View('@item.Id');" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group m-b-s">
+        <div class="col-xs-2">
+            <button type="submit" id="submit" name="action" value="Save" class="btn btn-warning"><i class="fa fa-file-text-o"></i> Save CSV</button>
+        </div>
+
+        <div class="col-xs-2"><button type="button" data-action="cancel" class="btn btn-danger" onclick="_cancel();"><i class="fa fa-reply"></i> Cancel</button></div>
+    </div>
+
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#tablegrid').DataTable({
+            "processing": true,
+            "searching": true,
+            "ordering": true,
+            "pagingType": "full_numbers"
+        });
+
+        $('form').on('submit', function (event) {
+            // Stop the default submission
+            event.preventDefault();
+
+            //dataMod = '@Model.TaskList';
+            var data = "ok";
+            var url = "@Url.Action("CreateCSV", "Home")";
+            // Serialize (JSON) the form's contents and post it to action
+            $.post(url, { model: data}, function (data) {
+                if (data.result === 'Failed') {
+                    toastr.error('Failed to save data.');
+                    $('#toastr').text("");
+                } else {
+                    toastr.success('Data has been saved to CSV.');
+                    $('#toastr').text("");
+
+                    //redirect todo
+                }
+            });
+        });
+    });
+
+    function View(taskId) {
+
+        window.location.href = '@Url.Content("~/Home/TaskDetail?taskGuid=")' + taskId;
+    }
+</script>
+
