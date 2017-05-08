@@ -1,0 +1,70 @@
+﻿@model MSProjectIntegrator.Models.Connection
+@{
+    ViewBag.Title = "ConnectWizard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ConnectWizard</h2>
+
+@using (Html.BeginForm("PostConn", "Home", FormMethod.Post, new { @class = "form-horizontal form-main", @id = "Form1" }))
+{
+    <div class="col-md-12">
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.Url, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Url, Model.Url, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.UserName, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.UserName, Model.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Password, Model.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.IsOnpremise, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.CheckBoxFor(model => model.IsOnpremise, new { @onchange="chkOnChange(this)" })
+            </div>
+        </div>
+        <div class="form-group m-b-s" id="domainregion" hidden>
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.Domain, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Domain, Model.Domain, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-2">
+                <button type="submit" id="submit" name="action" value="Save" class="btn btn-warning"><i class="fa fa-file-text-o"></i> Connect</button>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $('form#close').hide();
+    });
+
+    function chkOnChange(e) {
+        if ($(e).is(':checked'))
+            $('#domainregion').show();
+        else 
+            $('#domainregion').hide();
+    }
+</script>

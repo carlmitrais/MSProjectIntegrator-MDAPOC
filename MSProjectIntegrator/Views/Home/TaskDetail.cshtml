@@ -1,0 +1,167 @@
+﻿@model MSProjectIntegrator.Models.TaskModel
+@{
+    ViewBag.Title = "Task Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("PostTaskItem", "Home", FormMethod.Post, new { @class = "form-horizontal form-main", @id = "Form1" }))
+{
+    <div class="col-md-6">
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.Task_Name, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Task_Name, Model.Task_Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.Duration, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Duration, Model.Duration, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Act_Dur, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Act_Dur, Model.Act_Dur, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Rem_Dur, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Act_Dur, Model.Rem_Dur, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Percent_Comp, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Percent_Comp, Model.Percent_Comp.ToString(), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Actual_Work, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Actual_Work, Model.Actual_Work, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Remaining_Work, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Remaining_Work, Model.Remaining_Work, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Scheduled_Work, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Scheduled_Work, Model.Scheduled_Work, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Act_Start, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Act_Start, Model.Act_Start.ToString("dd MMM yyyy"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Act_Finish, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Act_Finish, Model.Act_Finish.ToString("dd MMM yyyy"), new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.Actual_Cost, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Actual_Cost, Model.Actual_Cost.ToString("C2"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.Start_Date, new { @class = "control-label" })<i> :</i>
+            </div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Start_Date, Model.Start_Date.ToString("dd MMM yyyy"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Finish_Date, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Finish_Date, Model.Finish_Date.ToString("dd MMM yyyy"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Cost, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Cost, Model.Cost.ToString("C2"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.User.Name, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.DropDownList("UserName", new SelectList(ViewBag.ResourcesList, "Id", "Name"), "Please Select", new { style = "width: 150px;", @class = "js-example-basic-single", @onchange = "resourceChange(this)" })
+                @Html.HiddenFor(m => m.User.Name)
+                @Html.HiddenFor(m => m.User.Id)
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Constraint_Type, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Constraint_Type, Model.Constraint_Type, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Predecessors, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Predecessors, Model.Predecessors.ToString(), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Successors, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Successors, Model.Successors.ToString(), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Summary, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Summary, Model.Summary, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group m-b-s">
+            <div class="col-xs-4">@Html.LabelFor(model => model.Notes, new { @class = "control-label" })<i> :</i></div>
+            <div class="col-xs-6">
+                @Html.TextBoxFor(model => model.Notes, Model.Notes, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group m-b-s">
+        <div class="col-xs-2">
+            <button type="submit" id="submit" name="action" value="Save" class="btn btn-warning"><i class="fa fa-file-text-o"></i> Save</button>
+        </div>
+
+        <div class="col-xs-2"><button type="button" data-action="cancel" class="btn btn-danger" onclick="_cancel();"><i class="fa fa-reply"></i> Cancel</button></div>
+    </div>
+
+    @Html.HiddenFor(m => m.Id);
+}
+
+<script>
+    $(document).ready(function () {
+        $('select#UserName').val($('#User_Id').val()).change();
+    });
+
+    function resourceChange(e) {
+        $('#User_Id').val(e.value);
+        $('#User_Name').val($(e).find(":selected").text());
+    }
+</script>

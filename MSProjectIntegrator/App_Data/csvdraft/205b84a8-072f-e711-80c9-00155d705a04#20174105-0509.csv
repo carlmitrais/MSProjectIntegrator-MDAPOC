@@ -1,0 +1,4 @@
+Id,Task_Name,Duration,Act_Dur,Rem_Dur,Percent_Comp,Actual_Work,Remaining_Work,Scheduled_Work,Act_Start,Act_Finish,Actual_Cost,Start_Date,Finish_Date,Cost,Constraint_Type,Predecessors,Successors,Summary,Notes
+aa764dcb-092f-e711-80d1-00155d746509,Task Item 1,13d,0d,13d,0,0h,104h,104h,1/1/0001 12:00:00 AM,1/1/0001 12:00:00 AM,0,5/3/2017 8:00:00 AM,5/19/2017 5:00:00 PM,0,FinishNoEarlierThan,0,0,No,
+b51efe96-bf2f-e711-80d1-00155d702109,Task Item 3,6d,0d,6d,0,0h,0h,0h,1/1/0001 12:00:00 AM,1/1/0001 12:00:00 AM,0,5/2/2017 8:00:00 AM,5/9/2017 5:00:00 PM,0,AsSoonAsPossible,0,0,No,
+74d24082-0d2f-e711-80d4-00155d748106,Task Item 2 update,12d,0d,,0,0h,88h,88h,1/1/0001 12:00:00 AM,1/1/0001 12:00:00 AM,0,5/2/2017 12:00:00 AM,5/16/2017 12:00:00 AM,0,AsSoonAsPossible,0,0,No,

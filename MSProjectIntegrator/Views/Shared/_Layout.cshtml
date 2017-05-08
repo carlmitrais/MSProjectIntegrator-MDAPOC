@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+
+    @Styles.Render("~/Content/css")   
+    @Styles.Render("~/Content/dataTables")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    @*<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>*@
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("MS Project Integrator", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Project", "ProjectList", "Home")</li>
+                    <li>@Html.ActionLink("Sync", "SyncProject", "Home")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        @RenderBody()
+        <hr />
+        @using (Html.BeginForm("Close", "Home", FormMethod.Post, new { @class = "form-horizontal form-main", @id = "close" }))
+        {
+            <div class="form-group m-b-s">
+                <div class="col-xs-2"><button type="submit" data-action="cancel" class="btn btn-danger"><i class="fa fa-reply"></i> Close Connection</button></div>
+            </div>
+        }
+        <hr/>
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+       
+    @Scripts.Render("~/js/dataTables")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Sync to MS project";
+}
+<h2>@ViewBag.Title.</h2>
+
+<div class="row">
+    <table class="table table-striped table-bordered table-hover dataTable" id="tablegrid">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tUser">
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Created</td>
+                        <td>
+                            <input type="button" value="View" class="btn btn-warning btn-xs" onclick="View('@item.Id');" />
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#tablegrid').DataTable({
+            "processing": true,
+            "searching": true,
+            "ordering": true,
+            "pagingType": "full_numbers"
+        });
+    });
+
+    function View(projId) {
+
+        window.location.href = '@Url.Content("~/Home/CSVProjectDetail?guid=")' + projId;
+    }
+</script>
+
